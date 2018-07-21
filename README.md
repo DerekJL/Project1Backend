@@ -1,2 +1,2 @@
-# Project1Backend
-Revature Project 1
+# Project2Backend
+Revature Project 2
