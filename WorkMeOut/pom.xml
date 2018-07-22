@@ -7,17 +7,18 @@
   <description>Project 2 full stack web app</description>
 
 <dependencies>
-<dependency>
+	<dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.2.0.Final</version>
         </dependency>
         
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc7</artifactId>
-            <version>11.2.0</version>
-        </dependency>
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>8.0.11</version>
+	</dependency>
+      
 </dependencies>
 
 </project>
