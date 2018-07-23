@@ -10,10 +10,10 @@ phases:
     commands:
       - echo Build completed on `date`
       - mvn clean package
-      - mv target/WorkMeOut-0.0.1-SNAPSHOT.jar WorkMeOut-0.0.1-SNAPSHOT.jar
+      - mv target/WorkMeOut-0.0.1-SNAPSHOT.war WorkMeOut-0.0.1-SNAPSHOT.war
 artifacts:
   files:
-    - WorkMeOut-0.0.1-SNAPSHOT.jar
+    - WorkMeOut-0.0.1-SNAPSHOT.war
     - .ebextensions/**/*
 eb_codebuild_settings:
   CodeBuildServiceRole: AWS-CodePipeline-Project2-Service
