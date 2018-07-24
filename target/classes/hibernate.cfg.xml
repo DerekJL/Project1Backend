@@ -30,8 +30,7 @@
         <!-- set current session context - says how the session should behave such as one session per thread -->
         <property name="current_session_context_class">thread</property>
         
-        <!-- include persistence mapping file for the employee class (need to make class hmb file then register it here in config -->
-        <mapping resource="employee.hbm.xml"/>
+       
         
         </session-factory>
         
