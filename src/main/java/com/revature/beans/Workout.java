@@ -1,8 +1,11 @@
-package com.revature.models;
+package com.revature.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -10,23 +13,34 @@ import org.springframework.stereotype.Component;
 @Entity						// tells java that this will be mapped to a table in the database
 @Table(name="Workout")		// specifies the table it will be mapped to
 @Component
+@SequenceGenerator(name="workoutSeq", sequenceName="WORKOUT_SEQ", allocationSize=1)
 public class Workout {
 	
 	@Id
-	@Column
-	private int workout_id;	
-	@Column
+	@Column(name="workout_id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="workoutSeq")
+	private int workout_id;
+	
+	@Column(name="user_id")
 	private int User_id;
-	@Column
+	
+	@Column(name="type_id")
 	private int type_id;
-	@Column
+	
+	@Column(name="workout_name")
 	private String workout_name;
-	@Column
+	
+	@Column(name="workout_description")
 	private String workout_description;
-	@Column
+	
+	@Column(name="workout_visibility")
 	private int workout_visibility;
-	@Column
+	
+	@Column(name="queued_workout")
 	private char queued_workout;
+	
+	public Workout() {}
+	
 	
 	public Workout(int workout_id, int user_id, int type_id, String workout_name, String workout_description,
 			int workout_visibility, char queued_workout) {

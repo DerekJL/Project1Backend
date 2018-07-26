@@ -3,7 +3,9 @@ package com.revature.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.models.User;
+import com.revature.beans.User;
+import com.revature.exceptions.UserNotFoundException;
 import com.revature.services.UserService;
 
 @RestController
@@ -47,7 +50,13 @@ public class UserController {
 	@GetMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public User getUserById(@PathVariable int id){
 		System.out.println("[DEBUG] - In UserController.getUserById()");
-		return userService.getUserById(id);
+		User user = userService.getUserById(id);
+		
+		if(user == null) {
+			throw new UserNotFoundException("User with id " + id + " not found.");
+		}
+		
+		return user;
 	}
 	
 	@GetMapping(value="/email", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
@@ -57,15 +66,22 @@ public class UserController {
 	}
 	
 	@PostMapping(value="/register", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public User addUser(@RequestBody User u){
+	public ResponseEntity<User> addUser(@RequestBody User u){
 		System.out.println("[DEBUG] - In UserController.addUser()");
-		return userService.addUser(u);
+		User user = userService.addUser(u);
+		return new ResponseEntity<User>(user, HttpStatus.CREATED);
 	}
 	
-	@PutMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public User updateUser(@RequestBody User u){
+	@PutMapping(value="/update", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<User> updateUser(@RequestBody User u){
 		System.out.println("[DEBUG] - In UserController.updateUser()");
-		return userService.updateUser(u);
+		User user = userService.updateUser(u);
+		
+		if(user == null) {
+			throw new UserNotFoundException("User with id " + u.getUser_id() + " not found.");
+		}
+		
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
 }

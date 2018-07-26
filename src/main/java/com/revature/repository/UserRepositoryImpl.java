@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.revature.models.User;
+import com.revature.beans.User;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository{
@@ -56,11 +56,16 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@Override
 	public User updateUser(User newUser) {
-		System.out.println("[DEBUG] - UserRepository.getById()");
+		System.out.println("[DEBUG] - In UserRepository.updateUser()");
 		Session s = sessionFactory.getCurrentSession();
-		User u = s.get(User.class, newUser.getUser_id());
-		u = newUser;
-		return u;
+		User user = s.get(User.class, newUser.getUser_id());
+		
+		if(user == null) {
+			return user;
+		}		
+		
+		user = newUser;
+		return user;
 	}
 
 }

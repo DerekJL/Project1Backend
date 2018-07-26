@@ -1,10 +1,12 @@
 package com.revature.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.models.Workout;
+import org.springframework.stereotype.Repository;
 
+import com.revature.beans.Workout;
+
+@Repository
 public interface WorkoutRepository {
  
 	public List<Workout> getAllWorkouts();

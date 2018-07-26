@@ -1,8 +1,11 @@
-package com.revature.models;
+package com.revature.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -14,22 +17,30 @@ import org.springframework.stereotype.Component;
 @Entity					// tells java that this will be mapped to a table in the database
 @Table(name="User")		// specifies the table it will be mapped to
 @Component
+@SequenceGenerator(name="userSeq", sequenceName="USER_SEQ", allocationSize=1)
 public class User {
 	
 	@Id
-	@Column
-	private int user_id;	
-	@Column
+	@Column(name="user_id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userSeq")
+	private int user_id;
+	
+	@Column(name="username")
 	private String username;
-	@Column
+	
+	@Column(name="password")
 	private String password;
-	@Column
+	
+	@Column(name="firstName")
 	private String firstName;
-	@Column
+	
+	@Column(name="lastName")
 	private String lastName;
-	@Column
+	
+	@Column(name="email")
 	private String email;
-	@Column 
+	
+	@Column(name="phone")
 	private String phone;
 	
 	public User() {}

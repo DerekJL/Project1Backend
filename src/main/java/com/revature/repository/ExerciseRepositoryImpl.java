@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.revature.models.Exercise;
+import com.revature.beans.Exercise;
 
 @Repository
 public class ExerciseRepositoryImpl implements ExerciseRepository{
@@ -68,6 +68,11 @@ public class ExerciseRepositoryImpl implements ExerciseRepository{
 		System.out.println("[DEBUG] - In ExerciseRepositoryImpl.updateExercise");
 		Session s = sessionFactory.getCurrentSession();
 		Exercise temp = s.get(Exercise.class, ex.getExercise_id());
+			
+		if(temp == null) {
+			return temp;
+		}
+		
 		temp = ex;
 		return temp;
 	}

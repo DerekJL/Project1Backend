@@ -36,7 +36,7 @@ DROP TABLE ExerciseWorkout;
 
 /*
 ALTER TABLE Workout 
-	ADD COLUMN workout_visibility int AFTER workout_description;
+	ADD COLUMN workout_visibility iUserUsernt AFTER workout_description;
 */
 
 CREATE TABLE Workout(
@@ -85,6 +85,7 @@ CREATE TABLE ExerciseWorkout(
     CONSTRAINT PK_ExerciseWorkout_ExerciseWorkout PRIMARY KEY (exercise_id, workout_id)
 );
 
+Commit;
 
 
 

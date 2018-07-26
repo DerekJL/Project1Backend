@@ -1,6 +1,6 @@
 package com.revature.controllers;
 
-import com.revature.models.User;
+import com.revature.beans.User;
 import com.revature.repository.UserRepositoryImpl;
 
 public class TestDriver {

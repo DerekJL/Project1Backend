@@ -3,7 +3,7 @@ package com.revature.repository;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.models.Exercise;
+import com.revature.beans.Exercise;
 
 
 public interface ExerciseRepository {

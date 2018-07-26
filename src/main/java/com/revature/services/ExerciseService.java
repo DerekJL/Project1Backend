@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.revature.models.Exercise;
+import com.revature.beans.Exercise;
 import com.revature.repository.ExerciseRepository;
 
 @Service

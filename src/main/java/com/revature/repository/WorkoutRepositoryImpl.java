@@ -3,14 +3,15 @@ package com.revature.repository;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import com.revature.models.Workout;
+import com.revature.beans.Workout;
 
+@Repository
 public class WorkoutRepositoryImpl implements WorkoutRepository{
 	
 	static {
@@ -53,6 +54,11 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getgetWorkoutsByName");
 		Session s = sessionFactory.getCurrentSession();
 		Workout temp = s.get(Workout.class, wk.getWorkout_id());
+		
+		if(temp == null) {
+			return temp;
+		}
+		
 		temp = wk;
 		return temp;
 	}
@@ -77,7 +83,7 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 		ArrayList<Workout> workouts = new ArrayList<>(); 
 		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getgetWorkoutsByName");
 		Session s = sessionFactory.getCurrentSession();
-		Query query = (Query) s.createQuery("from Workout w where w.user_id = ? ").getResultList();
+		Query query =  (Query) s.createQuery("from Workout w where w.user_id = ? ").getResultList();
 		query.setParameter(0, wk.getUser_id());
 		workouts = (ArrayList<Workout>) query.list();
 		return workouts;		

@@ -1,8 +1,11 @@
-package com.revature.models;
+package com.revature.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -10,24 +13,33 @@ import org.springframework.stereotype.Component;
 @Entity						// tells java that this will be mapped to a table in the database
 @Table(name="Exercise")		// specifies the table it will be mapped to
 @Component
+@SequenceGenerator(name="exerciseSeq", sequenceName="EXERCISE_SEQ", allocationSize=1)
 public class Exercise {
 
 	@Id
-	@Column
-	private int exercise_id;	
-	@Column
+	@Column(name="exercise_id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="exerciseSeq")
+	private int exercise_id;
+	
+	@Column(name="type_id")
 	private int type_id;
-	@Column
+	
+	@Column(name="user_id")
 	private int user_id;
-	@Column
+	
+	@Column(name="exercise_name")
 	private String exercise_name;
-	@Column
+	
+	@Column(name="exercise_description")
 	private String exercise_description;
-	@Column
+	
+	@Column(name="exercise_sets")
 	private String exercise_sets;
-	@Column
+	
+	@Column(name="exercise_reps")
 	private String exercise_reps;
-	@Column
+	
+	@Column(name="exercise_duration")
 	private String exercise_duration;
 	
 	public Exercise() {}
