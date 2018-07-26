@@ -7,7 +7,7 @@ public class TestDriver {
 
 	public static void main(String[] args) {
 		
-		User newUser = new User(21, "jbein", "pass", "John", "Beineke", "jbein@gmail.com", "317-956-0842");
+		User newUser = new User(1, "jbein", "pass", "John", "Beineke", "jbein@gmail.com", "317-956-0842");
 		
 		UserRepositoryImpl userRepo = new UserRepositoryImpl();
 		

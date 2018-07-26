@@ -27,7 +27,7 @@ public class ExerciseController {
 	ExerciseService exerciseService; 
 	
 	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<Exercise> getAllExercises() {
+	public List<Exercise> getAll() {
 		System.out.println("[DEBUG] - In ExerciseController.getExerciseById");
 		return exerciseService.getAllExercises();
 	}
