@@ -9,4 +9,35 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!-- Creates a root web application context for our web application to use, and puts it in the ServletContext -->
+  <!-- Kind of acts as our main method- waits for tomcat to finish spinning up, then creates a context for us -->
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <!-- Tell spring where it can find the configuration file for our webApplicationContext -->
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>/WEB-INF/beans.xml</param-value>
+  </context-param>
+  
+  <servlet>
+  	<servlet-name>DispatcherServlet</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	
+  	<init-param>
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value>/WEB-INF/beans.xml</param-value>
+  	</init-param>
+  	
+  	<load-on-startup>1</load-on-startup>
+  	
+  </servlet>
+  
+  <servlet-mapping>
+  		<servlet-name>DispatcherServlet</servlet-name>
+  		<url-pattern>/*</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
