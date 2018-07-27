@@ -2,6 +2,8 @@ package com.revature.repository;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +37,13 @@ public class ExerciseRepositoryImpl implements ExerciseRepository{
 	}
 
 	@Override
-	public Exercise getExerciseByName(Exercise ex) {
+	public List<Exercise> getExercisesByName(Exercise ex) {
 		System.out.println("[DEBUG] - In ExerciseRepositoryImpl.getExerciseByName");
 		Session s = sessionFactory.getCurrentSession();
-		return s.get(Exercise.class, ex.getExercise_name());
+		String hql = "from Exercise e WHERE e.name = ?";
+		Query query = s.createQuery(hql).setParameter(0, ex.getExercise_name());
+		List<Exercise> exercise = query.getResultList();
+		return exercise;
 	}
 
 	@Override

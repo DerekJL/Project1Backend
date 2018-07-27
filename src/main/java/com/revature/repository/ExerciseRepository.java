@@ -10,7 +10,7 @@ public interface ExerciseRepository {
 
 	public List<Exercise> getAllExercises();
 	public Exercise getExerciseById(int id);
-	public Exercise getExerciseByName(Exercise ex);
+	public List<Exercise> getExercisesByName(Exercise ex);
 	public Exercise getExerciseByWorkout(Exercise ex);
 	public Exercise createExercise(Exercise ex);
 	public Exercise updateExercise(Exercise ex);

@@ -29,25 +29,29 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 	}
 
 	@Override
-	public Workout getWorkoutByVisibility(Workout wk) {
+	public List<Workout> getWorkoutsByVisibility(String visibility) {
 		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getWorkoutsByVisibility");
 		Session s = sessionFactory.getCurrentSession();
-		return s.get(Workout.class, wk.getWorkout_visibility());
+		String hql = "from Workout w WHERE w.visibility = ?";
+		Query query = s.createQuery(hql).setParameter(0, visibility);
+		List<Workout> workouts =  query.getResultList();
+		return workouts;
 	}
 
-	@Override
-	public Workout getWorkoutByType(Workout wk) {
-		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getWorkoutsByType");
-		Session s = sessionFactory.getCurrentSession();
-		return s.get(Workout.class, wk.getType_id());
-	}
+//	@Override
+//	public Workout getWorkoutByType(Workout wk) {
+//		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getWorkoutsByType");
+//		Session s = sessionFactory.getCurrentSession();
+//		String hql = "from Workout w WHERE w.type = type";
+//		return s.get(Workout.class, wk.getType_id());
+//	}
 
-	@Override
-	public Workout getWorkoutByName(Workout wk) {
-		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getgetWorkoutsByName");
-		Session s = sessionFactory.getCurrentSession();
-		return s.get(Workout.class, wk.getWorkout_name());
-	}
+//	@Override
+//	public Workout getWorkoutByName(Workout wk) {
+//		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getgetWorkoutsByName");
+//		Session s = sessionFactory.getCurrentSession();
+//		return s.get(Workout.class, wk.getWorkout_name());
+//	}
 
 	@Override
 	public Workout updateWorkout(Workout wk) {
@@ -79,16 +83,23 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 	}
 
 	@Override
-	public List<Workout> getWorkoutsByUserId(Workout wk) {
-		ArrayList<Workout> workouts = new ArrayList<>(); 
-		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getgetWorkoutsByName");
+	public List<Workout> getWorkoutsByUserId(Workout wk) { 
+		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getWorkoutsByUserId");
 		Session s = sessionFactory.getCurrentSession();
 		Query query =  (Query) s.createQuery("from Workout w where w.user_id = ? ").getResultList();
 		query.setParameter(0, wk.getUser_id());
-		workouts = (ArrayList<Workout>) query.list();
+		List<Workout> workouts = (List<Workout>) query.getResultList();
 		return workouts;		
 	}
 
-	
+	@Override
+	public Workout updateQueuedFlag(Workout wk) {
+		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getgetWorkoutsByName");
+		Session s = sessionFactory.getCurrentSession();
+		Workout temp = s.get(Workout.class, wk.getWorkout_id());
+		temp.setQueued_workout("T");
+		
+		return temp;
+	}
 
 }

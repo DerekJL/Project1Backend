@@ -19,7 +19,7 @@ import com.revature.exceptions.ExerciseNotFoundException;
 import com.revature.services.ExerciseService;
 
 @RestController						// implies controller and request body on methods
-@RequestMapping(value="/exercise")
+@RequestMapping(value="/exercises")
 public class ExerciseController {
 	
 	static {
@@ -47,19 +47,19 @@ public class ExerciseController {
 		return exercise;
 	}
 	
-	@GetMapping(value="/name", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/names", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public Exercise getExerciseByName(@RequestBody Exercise ex) {
 		System.out.println("[DEBUG] - In ExerciseController.getExerciseByName");
 		return exerciseService.getExerciseByName(ex);
 	}
 	
-	@GetMapping(value="/workout", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/workouts", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public Exercise getExerciseByWorkout(@RequestBody Exercise ex) {
 		System.out.println("[DEBUG] - In ExerciseController.getExerciseByWorkout");
 		return exerciseService.getExerciseByWorkout(ex);
 	}
 	
-	@GetMapping(value="/user", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/users", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public Exercise getExerciseByUserId(@RequestBody int id) {
 		System.out.println("[DEBUG] - In ExerciseController.getExerciseByUserId");
 		return exerciseService.getExerciseByUserId(id);

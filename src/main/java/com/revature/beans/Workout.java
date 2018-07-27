@@ -37,13 +37,13 @@ public class Workout {
 	private int workout_visibility;
 	
 	@Column(name="queued_workout")
-	private char queued_workout;
+	private String queued_workout;
 	
 	public Workout() {}
 	
 	
 	public Workout(int workout_id, int user_id, int type_id, String workout_name, String workout_description,
-			int workout_visibility, char queued_workout) {
+			int workout_visibility, String queued_workout) {
 		super();
 		this.workout_id = workout_id;
 		User_id = user_id;
@@ -54,7 +54,7 @@ public class Workout {
 		this.queued_workout = queued_workout;
 	}
 	
-	public Workout(int user_id, int type_id, String workout_name, int workout_visibility, char queued_workout) {
+	public Workout(int user_id, int type_id, String workout_name, int workout_visibility, String queued_workout) {
 		super();
 		User_id = user_id;
 		this.type_id = type_id;
@@ -103,18 +103,17 @@ public class Workout {
 		this.workout_visibility = workout_visibility;
 	}
 
-	public char getQueued_workout() {
+	public String getQueued_workout() {
 		return queued_workout;
 	}
-	public void setQueued_workout(char queued_workout) {
-		this.queued_workout = queued_workout;
+	public void setQueued_workout(String string) {
+		this.queued_workout = string;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + User_id;
-		result = prime * result + queued_workout;
 		result = prime * result + type_id;
 		result = prime * result + ((workout_description == null) ? 0 : workout_description.hashCode());
 		result = prime * result + workout_id;

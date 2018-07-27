@@ -29,7 +29,15 @@ public class UserRepositoryImpl implements UserRepository{
 	public User getUserByUsername(User u) {
 		System.out.println("[DEBUG] - UserRepository.getUserByEmail()");
 		Session s = sessionFactory.getCurrentSession();
-		return s.get(User.class, u.getUsername());
+		String hql = "from User u WHERE u.username = ?";
+		Query query = s.createQuery(hql).setParameter(0, u.getUsername());
+		User user = (User) query.getSingleResult();
+		
+		if (user == null) {
+			return null;
+		} 
+		
+		return user;
 	}
 
 	public User getUserByEmail(User u) {

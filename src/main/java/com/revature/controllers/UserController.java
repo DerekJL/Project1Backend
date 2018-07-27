@@ -19,7 +19,7 @@ import com.revature.exceptions.UserNotFoundException;
 import com.revature.services.UserService;
 
 @RestController
-@RequestMapping(value="/user")
+@RequestMapping(value="/users")
 public class UserController {
 	
 	static {
@@ -35,16 +35,26 @@ public class UserController {
 		return userService.getAllUsers();
 	}
 	
-	@PostMapping(value="/username", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/usernames", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public User getUserByUsername(@RequestBody User u){
 		System.out.println("[DEBUG] - In UserController.getUserByUsername()");
-		return userService.getUserByUsername(u);
+		User user = userService.getUserByUsername(u);
+		
+		if(user == null) {
+			throw new UserNotFoundException("User with username " + u.getUsername() + " not found.");
+		}
+		return user;
 	}
 	
 	@PostMapping(value="/login", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public User loginUser(@RequestBody User u){
-		System.out.println("[DEBUG] - In UserController.getUserByUsername()");
-		return userService.getUserByUsername(u);
+		System.out.println("[DEBUG] - In UserController.loginUser()");
+		User user = userService.getUserByUsername(u);
+		
+		if(user == null) {
+			throw new UserNotFoundException("User with username " + u.getUsername() + " not found.");
+		}
+		return user;
 	}
 	
 	@GetMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
@@ -59,7 +69,7 @@ public class UserController {
 		return user;
 	}
 	
-	@PostMapping(value="/email", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/emails", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public User getUserByEmail(@RequestBody User u){
 		System.out.println("[DEBUG] - In UserController.getUserByEmail()");
 		return userService.getUserByEmail(u);

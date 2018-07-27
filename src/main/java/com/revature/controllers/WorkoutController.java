@@ -17,7 +17,7 @@ import com.revature.exceptions.WorkoutNotFoundException;
 import com.revature.services.WorkoutService;
 
 @RestController
-@RequestMapping(value="/workout")
+@RequestMapping(value="/workouts")
 public class WorkoutController {
 
 	static {
@@ -39,13 +39,13 @@ public class WorkoutController {
 		return workoutService.getWorkoutByVisibility(wk);
 	}
 	
-	@GetMapping(value="/type", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/types", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public Workout getWorkoutByType(@RequestBody Workout wk) {
 		System.out.println("[DEBUG] - In WorkoutController.getWorkoutbyType()");
 		return workoutService.getWorkoutByType(wk);
 	}
 	
-	@GetMapping(value="/name", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/names", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public Workout getWorkoutByName(@RequestBody Workout wk) {
 		System.out.println("[DEBUG] - In WorkoutController.getWorkoutbyName()");
 		return workoutService.getWorkoutByName(wk);
