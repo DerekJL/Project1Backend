@@ -35,7 +35,7 @@ public class UserController {
 		return userService.getAllUsers();
 	}
 	
-	@GetMapping(value="/username", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/username", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public User getUserByUsername(@RequestBody User u){
 		System.out.println("[DEBUG] - In UserController.getUserByUsername()");
 		return userService.getUserByUsername(u);
@@ -59,7 +59,7 @@ public class UserController {
 		return user;
 	}
 	
-	@GetMapping(value="/email", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/email", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public User getUserByEmail(@RequestBody User u){
 		System.out.println("[DEBUG] - In UserController.getUserByEmail()");
 		return userService.getUserByEmail(u);

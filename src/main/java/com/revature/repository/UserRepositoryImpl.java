@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -34,7 +35,10 @@ public class UserRepositoryImpl implements UserRepository{
 	public User getUserByEmail(User u) {
 		System.out.println("[DEBUG] - UserRepository.getUserByEmail()");
 		Session s = sessionFactory.getCurrentSession();
-		return s.get(User.class, u.getEmail());
+		String hql = "from User u WHERE u.email = ?";
+		Query query = s.createQuery(hql).setParameter(0, u.getEmail());
+		User user = (User) query.getSingleResult();
+		return user;
 	}
 
 
