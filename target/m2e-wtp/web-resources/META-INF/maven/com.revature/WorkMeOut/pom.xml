@@ -74,12 +74,13 @@
 		    <version>8.0.11</version>
 		</dependency>
 		
-		<dependency>
+		
+	<!--  	<dependency>
 	  		<groupId>com.oracle</groupId>
 	  		<artifactId>ojdbc7</artifactId>
 	  		<version>11.2.0</version>
 	  	</dependency> 
-		
+		-->
     
 		<dependency>
 			<groupId>javax.servlet</groupId>
