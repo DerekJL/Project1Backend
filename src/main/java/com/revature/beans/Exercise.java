@@ -12,12 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity						// tells java that this will be mapped to a table in the database
 @Table(name="Exercise")		// specifies the table it will be mapped to
@@ -57,7 +57,9 @@ public class Exercise {
 //	@JoinColumn(name="user_id")
 //	private User user;
 	
-	@ManyToMany(fetch=FetchType.LAZY, cascade= {
+	
+	@JsonIgnore
+	@ManyToMany(fetch=FetchType.EAGER, cascade= {
 			CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.DETACH, CascadeType.REFRESH
 	})	
