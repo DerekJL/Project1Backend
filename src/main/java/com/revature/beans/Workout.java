@@ -1,10 +1,17 @@
 package com.revature.beans;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -38,6 +45,20 @@ public class Workout {
 	
 	@Column(name="queued_workout")
 	private String queued_workout;
+	
+	
+	@ManyToMany(fetch=FetchType.LAZY, cascade= {
+			CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.DETACH, CascadeType.REFRESH
+	})
+	@JoinTable(
+			name="ExerciseWorkout",
+			joinColumns=@JoinColumn(name="workout_id"),
+			inverseJoinColumns=@JoinColumn(name="exercise_id")
+			)
+	
+	private List<Exercise> exercises;
+	
 	
 	public Workout() {}
 	
@@ -109,6 +130,18 @@ public class Workout {
 	public void setQueued_workout(String string) {
 		this.queued_workout = string;
 	}
+	
+	
+	public List<Exercise> getExercises() {
+		return exercises;
+	}
+
+
+	public void setExercises(List<Exercise> exercises) {
+		this.exercises = exercises;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

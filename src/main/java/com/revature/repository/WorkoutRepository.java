@@ -10,7 +10,7 @@ import com.revature.beans.Workout;
 public interface WorkoutRepository {
  
 	public List<Workout> getAllWorkouts();
-	public List<Workout> getWorkoutsByVisibility(String visibility);
+	public List<Workout> getWorkoutsByVisibility(int visibilityId);
 	public Workout getWorkoutById(int id);
 	public List<Workout> getWorkoutsByUserId(Workout wk);	
 //	public Workout getWorkoutByType(Workout wk);

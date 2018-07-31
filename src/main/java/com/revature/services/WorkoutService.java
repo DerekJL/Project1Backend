@@ -26,20 +26,20 @@ public class WorkoutService {
 		return workoutRepo.getAllWorkouts();
 	}
 	
-	public Workout getWorkoutByVisibility(Workout wk) {
+	public List<Workout> getWorkoutByVisibility(int visibilityId) {
 		System.out.println("[DEBUG]- In WorkoutService.getWorkoutByVisibility()");
-		return workoutRepo.getWorkoutByVisibility(wk);
+		return workoutRepo.getWorkoutsByVisibility(visibilityId);
 	}
 	
-	public Workout getWorkoutByType(Workout wk) {
-		System.out.println("[DEBUG]- In WorkoutService.getworkoutByType()");
-		return workoutRepo.getWorkoutByType(wk);
-	}
+//	public Workout getWorkoutByType(Workout wk) {
+//		System.out.println("[DEBUG]- In WorkoutService.getworkoutByType()");
+//		return workoutRepo.getWorkoutByType(wk);
+//	}
 	
-	public Workout getWorkoutByName(Workout wk) {
-		System.out.println("[DEBUG]- In WorkoutService.getWorkoutByName()");
-		return workoutRepo.getWorkoutByName(wk);
-	}
+//	public Workout getWorkoutByName(Workout wk) {
+//		System.out.println("[DEBUG]- In WorkoutService.getWorkoutByName()");
+//		return workoutRepo.getWorkoutByName(wk);
+//	}
 	
 	public Workout getWorkoutById(int id) {
 		System.out.println("[DEBUG]- In WorkoutService.getWorkoutById()");
@@ -60,11 +60,5 @@ public class WorkoutService {
 		System.out.println("[DEBUG]- In WorkoutService.getWorkoutsByUserId()");
 		return workoutRepo.getWorkoutsByUserId(wk);
 	}
-	
-	
-	
-	
-	
-	
-	
+		
 }

@@ -7,7 +7,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.revature.beans.Workout;
 
@@ -29,11 +32,11 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 	}
 
 	@Override
-	public List<Workout> getWorkoutsByVisibility(String visibility) {
+	public List<Workout> getWorkoutsByVisibility(int visibilityId) {
 		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getWorkoutsByVisibility");
 		Session s = sessionFactory.getCurrentSession();
 		String hql = "from Workout w WHERE w.visibility = ?";
-		Query query = s.createQuery(hql).setParameter(0, visibility);
+		Query query = s.createQuery(hql).setParameter(0, visibilityId);
 		List<Workout> workouts =  query.getResultList();
 		return workouts;
 	}
@@ -91,6 +94,7 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 		List<Workout> workouts = (List<Workout>) query.getResultList();
 		return workouts;		
 	}
+	
 
 	@Override
 	public Workout updateQueuedFlag(Workout wk) {

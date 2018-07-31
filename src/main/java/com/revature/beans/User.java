@@ -43,6 +43,8 @@ public class User {
 	@Column(name="phone")
 	private String phone;
 	
+	
+	
 	public User() {}
 
 	public User(int user_id, String username, String password, String firstName, String lastName, String email,

@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.beans.Exercise;
 import com.revature.beans.User;
+import com.revature.beans.Workout;
 import com.revature.exceptions.UserNotFoundException;
+import com.revature.services.ExerciseService;
 import com.revature.services.UserService;
+import com.revature.services.WorkoutService;
 
 @RestController
 @RequestMapping(value="/users")
@@ -68,6 +72,7 @@ public class UserController {
 		
 		return user;
 	}
+	
 	
 	@PostMapping(value="/emails", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public User getUserByEmail(@RequestBody User u){
