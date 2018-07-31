@@ -17,6 +17,9 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity						// tells java that this will be mapped to a table in the database
 @Table(name="Workout")		// specifies the table it will be mapped to
 @Component
@@ -46,8 +49,8 @@ public class Workout {
 	@Column(name="queued_workout")
 	private String queued_workout;
 	
-	
-	@ManyToMany(fetch=FetchType.LAZY, cascade= {
+	@JsonIgnore
+	@ManyToMany(fetch=FetchType.EAGER, cascade= {
 			CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.DETACH, CascadeType.REFRESH
 	})

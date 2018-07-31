@@ -7,15 +7,14 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.revature.beans.Exercise;
 import com.revature.beans.Workout;
 
 @Repository
+@JsonIgnoreProperties
 public class ExerciseRepositoryImpl implements ExerciseRepository{
 	
 	static {
