@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.beans.Exercise;
 import com.revature.beans.User;
+import com.revature.beans.Workout;
 import com.revature.exceptions.UserNotFoundException;
+import com.revature.services.ExerciseService;
 import com.revature.services.UserService;
+import com.revature.services.WorkoutService;
 
 @RestController
-@RequestMapping(value="/user")
+@RequestMapping(value="/users")
 public class UserController {
 	
 	static {
@@ -29,22 +33,33 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	// TESTED WITH POSTMAN SUCCESSFULLY ON 7/31/2018 AT 4:10 P.M.
 	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<User> getAllUsers(){
 		System.out.println("[DEBUG] - In UserController.getAllUsers()");
 		return userService.getAllUsers();
 	}
 	
-	@PostMapping(value="/username", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/usernames", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public User getUserByUsername(@RequestBody User u){
 		System.out.println("[DEBUG] - In UserController.getUserByUsername()");
-		return userService.getUserByUsername(u);
+		User user = userService.getUserByUsername(u);
+		
+		if(user == null) {
+			throw new UserNotFoundException("User with username " + u.getUsername() + " not found.");
+		}
+		return user;
 	}
 	
 	@PostMapping(value="/login", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public User loginUser(@RequestBody User u){
-		System.out.println("[DEBUG] - In UserController.getUserByUsername()");
-		return userService.getUserByUsername(u);
+		System.out.println("[DEBUG] - In UserController.loginUser()");
+		User user = userService.getUserByUsername(u);
+		
+		if(user == null) {
+			throw new UserNotFoundException("User with username " + u.getUsername() + " not found.");
+		}
+		return user;
 	}
 	
 	@GetMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
@@ -59,12 +74,14 @@ public class UserController {
 		return user;
 	}
 	
-	@PostMapping(value="/email", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	
+	@PostMapping(value="/emails", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public User getUserByEmail(@RequestBody User u){
 		System.out.println("[DEBUG] - In UserController.getUserByEmail()");
 		return userService.getUserByEmail(u);
 	}
 	
+	// TESTED WITH POSTMAN SUCCESSFULLY ON 7/31/2018 AT 4:12 P.M.
 	@PostMapping(value="/register", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> addUser(@RequestBody User u){
 		System.out.println("[DEBUG] - In UserController.addUser()");

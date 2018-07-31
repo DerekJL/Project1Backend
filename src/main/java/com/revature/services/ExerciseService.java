@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.beans.Exercise;
+import com.revature.beans.Workout;
 import com.revature.repository.ExerciseRepository;
 
 @Service
@@ -21,7 +22,7 @@ public class ExerciseService {
 	ExerciseRepository exerciseRepo;
 	
 	public List<Exercise> getAllExercises() {
-		System.out.println("[DEBUG] - In ExerciseService.getExerciseById");
+		System.out.println("[DEBUG] - In ExerciseService.getAllExercises()");
 		return exerciseRepo.getAllExercises();
 	}
 	
@@ -30,19 +31,19 @@ public class ExerciseService {
 		return exerciseRepo.getExerciseById(id);
 	}
 	
-	public Exercise getExerciseByName(Exercise ex) {
+	public List<Exercise> getExercisesByName(Exercise ex) {
 		System.out.println("[DEBUG] - In ExerciseService.getExerciseByName");
-		return exerciseRepo.getExerciseByName(ex);
+		return exerciseRepo.getExercisesByName(ex);
 	}
 	
-	public Exercise getExerciseByWorkout(Exercise ex) {
+	public List<Exercise> getExercisesByWorkout(Workout wk) {
 		System.out.println("[DEBUG] - In ExerciseService.getExerciseByWorkout");
-		return exerciseRepo.getExerciseByWorkout(ex);
+		return exerciseRepo.getExercisesByWorkout(wk);
 	}
 	
-	public Exercise getExerciseByUserId(int id) {
+	public List<Exercise> getExercisesByUserId(int id) {
 		System.out.println("[DEBUG] - In ExerciseService.getExerciseByUserId");
-		return exerciseRepo.getExerciseByUserId(id);
+		return exerciseRepo.getExercisesByUserId(id);
 	}
 	
 	public Exercise createExercise(Exercise ex) {

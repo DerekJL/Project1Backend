@@ -39,6 +39,16 @@ ALTER TABLE Workout
 	ADD COLUMN workout_visibility iUserUsernt AFTER workout_description;
 */
 
+/*
+ALTER TABLE Exercise
+DROP COLUMN workout_id;
+*/
+
+/*
+ALTER TABLE Workout
+	ADD Exercise_id		int	AFTER workout_id;
+*/
+
 CREATE TABLE Workout(
 	workout_id			int		AUTO_INCREMENT,
     user_id				int,
@@ -56,6 +66,10 @@ CREATE TABLE Workout(
 		REFERENCES `Type` (type_id)
         ON UPDATE CASCADE
 );
+
+-- ALTER TABLE Exercise
+-- ADD workout_id		int	AFTER exercise_id;
+
 
 CREATE TABLE Exercise(
 	exercise_id				int				AUTO_INCREMENT,
@@ -84,6 +98,24 @@ CREATE TABLE ExerciseWorkout(
     
     CONSTRAINT PK_ExerciseWorkout_ExerciseWorkout PRIMARY KEY (exercise_id, workout_id)
 );
+
+INSERT INTO `Type` VALUES (1, 'Upper Body');
+INSERT INTO `Type` VALUES (2, 'Lower Body');
+INSERT INTO `Type` VALUES (3, 'Full Body');
+INSERT INTO `Type` VALUES (4, 'Chest');
+INSERT INTO `Type` VALUES (5, 'Back');
+INSERT INTO `Type` VALUES (6, 'Biceps');
+INSERT INTO `Type` VALUES (7, 'Triceps');
+INSERT INTO `Type` VALUES (8, 'Shoulders');
+INSERT INTO `Type` VALUES (9, 'Abs');
+INSERT INTO `Type` VALUES (10, 'Glutes');
+INSERT INTO `Type` VALUES (11, 'Hamstrings');
+INSERT INTO `Type` VALUES (12, 'Quads');
+INSERT INTO `Type` VALUES (13, 'Calves');
+INSERT INTO `Type` VALUES (14, 'Cardio');
+
+
+INSERT INTO Workout VALUES (1, 1, 1, 1, 'Upper Strength', 'Heavy upper body day', 1, 1);
 
 Commit;
 

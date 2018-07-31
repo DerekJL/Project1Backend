@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Exercise;
+import com.revature.beans.Workout;
 import com.revature.exceptions.ExerciseNotFoundException;
 import com.revature.services.ExerciseService;
 
-@RestController						// implies controller and request body on methods
-@RequestMapping(value="/exercise")
+
+@RestController						// implies controller and response body on methods
+@RequestMapping(value="/exercises")
 public class ExerciseController {
 	
 	static {
@@ -31,7 +33,7 @@ public class ExerciseController {
 	
 	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Exercise> getAll() {
-		System.out.println("[DEBUG] - In ExerciseController.getExerciseById");
+		System.out.println("[DEBUG] - In ExerciseController.getAll");
 		return exerciseService.getAllExercises();
 	}
 	
@@ -47,25 +49,26 @@ public class ExerciseController {
 		return exercise;
 	}
 	
-	@GetMapping(value="/name", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public Exercise getExerciseByName(@RequestBody Exercise ex) {
+	@PostMapping(value="/names", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Exercise> getExerciseByName(@RequestBody Exercise ex) {
 		System.out.println("[DEBUG] - In ExerciseController.getExerciseByName");
-		return exerciseService.getExerciseByName(ex);
+		return exerciseService.getExercisesByName(ex);
 	}
 	
-	@GetMapping(value="/workout", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public Exercise getExerciseByWorkout(@RequestBody Exercise ex) {
+	@PostMapping(value="/workouts", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Exercise> getExercisesByWorkout(@RequestBody Workout wk) {
 		System.out.println("[DEBUG] - In ExerciseController.getExerciseByWorkout");
-		return exerciseService.getExerciseByWorkout(ex);
+		return exerciseService.getExercisesByWorkout(wk);
 	}
-	
-	@GetMapping(value="/user", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public Exercise getExerciseByUserId(@RequestBody int id) {
+
+	@GetMapping(value="/users", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Exercise> getExerciseByUserId(@RequestBody int id) {
 		System.out.println("[DEBUG] - In ExerciseController.getExerciseByUserId");
-		return exerciseService.getExerciseByUserId(id);
+		return exerciseService.getExercisesByUserId(id);
 	}
 	
-	@PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	// TESTED WITH POSTMAN SUCCESSFULLY ON 7/31/2018 AT 4:11 P.M.
+	@PostMapping(value="/create", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Exercise> createExercise(@RequestBody Exercise ex) {
 		System.out.println("[DEBUG] - In ExerciseController.addExercise");
 		Exercise exercise = exerciseService.createExercise(ex);

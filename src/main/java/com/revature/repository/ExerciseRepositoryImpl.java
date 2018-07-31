@@ -2,12 +2,18 @@ package com.revature.repository;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.revature.beans.Exercise;
+import com.revature.beans.Workout;
 
 @Repository
 public class ExerciseRepositoryImpl implements ExerciseRepository{
@@ -21,7 +27,7 @@ public class ExerciseRepositoryImpl implements ExerciseRepository{
 
 	@Override
 	public List<Exercise> getAllExercises() {
-		System.out.println("[DEBUG] - ExerciseRepository instantiated!");
+		System.out.println("[DEBUG] - In ExerciseRepositoryImpl.getAllExercises()");
 		Session s = sessionFactory.getCurrentSession();
 		return s.createQuery("from Exercise", Exercise.class).getResultList();
 	}
@@ -35,24 +41,33 @@ public class ExerciseRepositoryImpl implements ExerciseRepository{
 	}
 
 	@Override
-	public Exercise getExerciseByName(Exercise ex) {
+	public List<Exercise> getExercisesByName(Exercise ex) {
 		System.out.println("[DEBUG] - In ExerciseRepositoryImpl.getExerciseByName");
 		Session s = sessionFactory.getCurrentSession();
-		return s.get(Exercise.class, ex.getExercise_name());
+		String hql = "from Exercise e WHERE e.name = ?";
+		Query query = s.createQuery(hql).setParameter(0, ex.getExercise_name());
+		List<Exercise> exercise = query.getResultList();
+		return exercise;
 	}
 
 	@Override
-	public Exercise getExerciseByWorkout(Exercise ex) {
-		System.out.println("[DEBUG] - In ExerciseRepositoryImpl.getExerciseByWorkout");
+	public List<Exercise> getExercisesByWorkout(Workout wk) {
+		System.out.println("[DEBUG] - In ExerciseRepositoryImpl.getExercisesByWorkout");
 		Session s = sessionFactory.getCurrentSession();
-		return s.get(Exercise.class, ex.getExercise_id());
+		String hql = "from Exercise e WHERE e.workout_id = ?";
+		Query query = s.createQuery(hql).setParameter(0, wk.getWorkout_id());
+		List<Exercise> exercises = query.getResultList();
+		return exercises;
 	}
 	
 	@Override
-	public Exercise getExerciseByUserId(int id) {
+	public List<Exercise> getExercisesByUserId(int id) {
 		System.out.println("[DEBUG] - In ExerciseRepositoryImpl.getExerciseByUserId");
 		Session s = sessionFactory.getCurrentSession();
-		return s.get(Exercise.class, id);
+		String hql = "from Exercise e WHERE e.user_id = ?";
+		Query query = s.createQuery(hql).setParameter(0, id);
+		List<Exercise> exercises = query.getResultList();
+		return exercises;
 	}
 
 	@Override
@@ -76,7 +91,4 @@ public class ExerciseRepositoryImpl implements ExerciseRepository{
 		temp = ex;
 		return temp;
 	}
-
-	
-
 }
