@@ -22,7 +22,7 @@ public class ExerciseService {
 	ExerciseRepository exerciseRepo;
 	
 	public List<Exercise> getAllExercises() {
-		System.out.println("[DEBUG] - In ExerciseService.getExerciseById");
+		System.out.println("[DEBUG] - In ExerciseService.getAllExercises()");
 		return exerciseRepo.getAllExercises();
 	}
 	

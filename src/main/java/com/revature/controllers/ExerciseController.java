@@ -19,6 +19,7 @@ import com.revature.beans.Workout;
 import com.revature.exceptions.ExerciseNotFoundException;
 import com.revature.services.ExerciseService;
 
+
 @RestController						// implies controller and response body on methods
 @RequestMapping(value="/exercises")
 public class ExerciseController {
@@ -32,7 +33,7 @@ public class ExerciseController {
 	
 	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Exercise> getAll() {
-		System.out.println("[DEBUG] - In ExerciseController.getExerciseById");
+		System.out.println("[DEBUG] - In ExerciseController.getAll");
 		return exerciseService.getAllExercises();
 	}
 	
@@ -66,6 +67,7 @@ public class ExerciseController {
 		return exerciseService.getExercisesByUserId(id);
 	}
 	
+	// TESTED WITH POSTMAN SUCCESSFULLY ON 7/31/2018 AT 4:11 P.M.
 	@PostMapping(value="/create", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Exercise> createExercise(@RequestBody Exercise ex) {
 		System.out.println("[DEBUG] - In ExerciseController.addExercise");

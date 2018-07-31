@@ -33,6 +33,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	// TESTED WITH POSTMAN SUCCESSFULLY ON 7/31/2018 AT 4:10 P.M.
 	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<User> getAllUsers(){
 		System.out.println("[DEBUG] - In UserController.getAllUsers()");
@@ -80,6 +81,7 @@ public class UserController {
 		return userService.getUserByEmail(u);
 	}
 	
+	// TESTED WITH POSTMAN SUCCESSFULLY ON 7/31/2018 AT 4:12 P.M.
 	@PostMapping(value="/register", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> addUser(@RequestBody User u){
 		System.out.println("[DEBUG] - In UserController.addUser()");

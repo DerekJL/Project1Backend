@@ -62,7 +62,7 @@ public class Exercise {
 			CascadeType.DETACH, CascadeType.REFRESH
 	})	
 	@JoinTable(
-				name = "ExerciseWorkout",
+				name="ExerciseWorkout",
 				joinColumns=@JoinColumn(name="exercise_id"),
 				inverseJoinColumns=@JoinColumn(name="workout_id")		
 			)

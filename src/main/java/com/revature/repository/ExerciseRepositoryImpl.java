@@ -27,7 +27,7 @@ public class ExerciseRepositoryImpl implements ExerciseRepository{
 
 	@Override
 	public List<Exercise> getAllExercises() {
-		System.out.println("[DEBUG] - ExerciseRepository instantiated!");
+		System.out.println("[DEBUG] - In ExerciseRepositoryImpl.getAllExercises()");
 		Session s = sessionFactory.getCurrentSession();
 		return s.createQuery("from Exercise", Exercise.class).getResultList();
 	}
