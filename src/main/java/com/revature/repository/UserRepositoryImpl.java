@@ -31,11 +31,17 @@ public class UserRepositoryImpl implements UserRepository{
 		Session s = sessionFactory.getCurrentSession();
 		String hql = "from User u WHERE u.username = ?";
 		Query query = s.createQuery(hql).setParameter(0, u.getUsername());
-		User user = (User) query.getSingleResult();
+		User user = new User();
 		
-		if (user == null) {
-			return null;
-		} 
+		try {
+			user = (User) query.getSingleResult();
+		} catch (Exception e) {
+			
+		}
+		
+//		if (user == null) {
+//			return null;
+//		} 
 		
 		return user;
 	}
@@ -45,7 +51,18 @@ public class UserRepositoryImpl implements UserRepository{
 		Session s = sessionFactory.getCurrentSession();
 		String hql = "from User u WHERE u.email = ?";
 		Query query = s.createQuery(hql).setParameter(0, u.getEmail());
-		User user = (User) query.getSingleResult();
+		User user = new User();
+		
+		try {
+			user = (User) query.getSingleResult();
+		} catch (Exception e) {
+			
+		}
+			
+//		if (user == null) {
+//			return null;
+//		} 
+		
 		return user;
 	}
 
