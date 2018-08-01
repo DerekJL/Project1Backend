@@ -88,6 +88,7 @@ public class ExerciseRepositoryImpl implements ExerciseRepository{
 		}
 		
 		temp = ex;
+	
 		return temp;
 	}
 }

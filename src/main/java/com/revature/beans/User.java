@@ -10,10 +10,7 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-/* 
- * @SequenceGenerator(name="user_seq", sequenceName="user_seq", allocationSize=1) 
- * we can just set the auto-increment constraint on our PK in mySQL
- */
+
 @Entity					// tells java that this will be mapped to a table in the database
 @Table(name="User")		// specifies the table it will be mapped to
 @Component
