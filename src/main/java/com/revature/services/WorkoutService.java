@@ -56,9 +56,9 @@ public class WorkoutService {
 		return workoutRepo.createWorkout(wk);
 	}
 	
-	public List<Workout> getWorkoutsByUserId(Workout wk){
+	public List<Workout> getWorkoutsByUserId(int id){
 		System.out.println("[DEBUG]- In WorkoutService.getWorkoutsByUserId()");
-		return workoutRepo.getWorkoutsByUserId(wk);
+		return workoutRepo.getWorkoutsByUserId(id);
 	}
 		
 }
