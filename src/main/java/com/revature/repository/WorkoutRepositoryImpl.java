@@ -87,11 +87,11 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 	}
 
 	@Override
-	public List<Workout> getWorkoutsByUserId(Workout wk) { 
+	public List<Workout> getWorkoutsByUserId(int id) { 
 		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getWorkoutsByUserId");
 		Session s = sessionFactory.getCurrentSession();
 		Query query =  (Query) s.createQuery("from Workout w where w.user_id = ? ").getResultList();
-		query.setParameter(0, wk.getUser_id());
+		query.setParameter(0, id);
 		List<Workout> workouts = (List<Workout>) query.getResultList();
 		return workouts;		
 	}
