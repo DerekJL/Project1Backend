@@ -1,5 +1,6 @@
 package com.revature.repository;
 
+import java.sql.Array;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -84,7 +85,6 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 //			ExerciseWorkout exwork = new ExerciseWorkout();
 //			exwork.setExercise_id(exercise.getExercise_id());
 //			exwork.setWorkout_id(new_wk.getWorkout_id());
-			
 			new_wk.addExercises(exercise);
 		}
 		s.save(new_wk);
