@@ -52,6 +52,9 @@ public class Exercise {
 	@Column(name="exercise_duration")
 	private String exercise_duration;
 	
+	@Column(name="exercise_rest")
+	private String exercise_rest;
+	
 	
 //	@OneToOne(fetch=FetchType.LAZY, cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 //			CascadeType.DETACH, CascadeType.REFRESH})
@@ -99,6 +102,24 @@ public class Exercise {
 		this.exercise_sets = exercise_sets;
 		this.exercise_reps = exercise_reps;
 		this.exercise_duration = exercise_duration;
+	}
+	
+	
+
+	public Exercise(int exercise_id, int type_id, int user_id, String exercise_name, String exercise_description,
+			String exercise_sets, String exercise_reps, String exercise_duration, String exercise_rest,
+			List<Workout> workouts) {
+		super();
+		this.exercise_id = exercise_id;
+		this.type_id = type_id;
+		this.user_id = user_id;
+		this.exercise_name = exercise_name;
+		this.exercise_description = exercise_description;
+		this.exercise_sets = exercise_sets;
+		this.exercise_reps = exercise_reps;
+		this.exercise_duration = exercise_duration;
+		this.exercise_rest = exercise_rest;
+		this.workouts = workouts;
 	}
 
 	public int getExercise_id() {
@@ -165,6 +186,15 @@ public class Exercise {
 		this.exercise_duration = exercise_duration;
 	}
 	
+	
+	public String getExercise_rest() {
+		return exercise_rest;
+	}
+
+	public void setExercise_rest(String exercise_rest) {
+		this.exercise_rest = exercise_rest;
+	}
+
 	public List<Workout> getWorkouts() {
 		return workouts;
 	}
