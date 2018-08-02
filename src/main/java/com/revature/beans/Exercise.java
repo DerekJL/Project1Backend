@@ -1,5 +1,6 @@
 package com.revature.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -171,6 +172,7 @@ public class Exercise {
 	public void setWorkouts(List<Workout> workouts) {
 		this.workouts = workouts;
 	}
+	
 
 	@Override
 	public int hashCode() {

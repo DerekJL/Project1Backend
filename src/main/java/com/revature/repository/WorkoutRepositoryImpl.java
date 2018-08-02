@@ -1,17 +1,14 @@
 package com.revature.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
+import com.revature.beans.Exercise;
 import com.revature.beans.Workout;
 
 @Repository
@@ -80,8 +77,16 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 
 	@Override
 	public Workout createWorkout(Workout new_wk) {
-		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getgetWorkoutsByName");
+		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.createWorkout");
 		Session s = sessionFactory.getCurrentSession();
+		System.out.println(new_wk);
+		for(Exercise exercise : new_wk.getExercises()) {
+//			ExerciseWorkout exwork = new ExerciseWorkout();
+//			exwork.setExercise_id(exercise.getExercise_id());
+//			exwork.setWorkout_id(new_wk.getWorkout_id());
+			
+			new_wk.addExercises(exercise);
+		}
 		s.save(new_wk);
 		return new_wk;
 	}

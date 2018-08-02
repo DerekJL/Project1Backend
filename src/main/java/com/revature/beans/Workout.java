@@ -1,5 +1,6 @@
 package com.revature.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,7 +19,6 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity						// tells java that this will be mapped to a table in the database
 @Table(name="Workout")		// specifies the table it will be mapped to
@@ -143,6 +143,15 @@ public class Workout {
 	public void setExercises(List<Exercise> exercises) {
 		this.exercises = exercises;
 	}
+	
+	// Add a convenience method
+		public void addExercises(Exercise exercise) {
+			if (exercise == null) {
+				exercises = new ArrayList<Exercise>();
+			}
+			
+			exercises.add(exercise);
+		}
 
 
 	@Override
