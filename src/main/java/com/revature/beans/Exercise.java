@@ -267,8 +267,10 @@ public class Exercise {
 		return "Exercise [exercise_id=" + exercise_id + ", type_id=" + type_id + ", user_id=" + user_id
 				+ ", exercise_name=" + exercise_name + ", exercise_description=" + exercise_description
 				+ ", exercise_sets=" + exercise_sets + ", exercise_reps=" + exercise_reps + ", exercise_duration="
-				+ exercise_duration + "]";
+				+ exercise_duration + ", exercise_rest=" + exercise_rest + ", workouts=" + workouts + "]";
 	}
+	
+	
 	
 	
 	

@@ -60,7 +60,7 @@ public class Workout {
 			inverseJoinColumns=@JoinColumn(name="exercise_id")
 			)
 	
-	private List<Exercise> exercises;
+	public List<Exercise> exercises;
 	
 	
 	public Workout() {}
@@ -85,6 +85,20 @@ public class Workout {
 		this.workout_name = workout_name;
 		this.workout_visibility = workout_visibility;
 		this.queued_workout = queued_workout;
+	}
+
+
+	public Workout(int workout_id, int user_id, int type_id, String workout_name, String workout_description,
+			int workout_visibility, String queued_workout, List<Exercise> exercises) {
+		super();
+		this.workout_id = workout_id;
+		User_id = user_id;
+		this.type_id = type_id;
+		this.workout_name = workout_name;
+		this.workout_description = workout_description;
+		this.workout_visibility = workout_visibility;
+		this.queued_workout = queued_workout;
+		this.exercises = exercises;
 	}
 
 
@@ -144,7 +158,7 @@ public class Workout {
 		this.exercises = exercises;
 	}
 	
-	// Add a convenience method
+	// convenience method
 		public void addExercises(Exercise exercise) {
 			if (exercise == null) {
 				exercises = new ArrayList<Exercise>();
@@ -194,11 +208,12 @@ public class Workout {
 			return false;
 		return true;
 	}
+	
 	@Override
 	public String toString() {
 		return "Workout [workout_id=" + workout_id + ", User_id=" + User_id + ", type_id=" + type_id + ", workout_name="
-				+ workout_name + ", workout_description=" + workout_description + ", queued_workout=" + queued_workout
-				+ "]";
+				+ workout_name + ", workout_description=" + workout_description + ", workout_visibility="
+				+ workout_visibility + ", queued_workout=" + queued_workout + ", exercises=" + exercises + "]";
 	}
 	
 	
