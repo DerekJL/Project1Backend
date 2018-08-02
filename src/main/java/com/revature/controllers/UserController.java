@@ -40,6 +40,7 @@ public class UserController {
 		return userService.getAllUsers();
 	}
 	
+	// TESTED WITH POSTMAN SUCCESSFULLY ON 8/01/2018 AT 9:52 A.M.
 	@PostMapping(value="/usernames", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public User getUserByUsername(@RequestBody User u){
 		System.out.println("[DEBUG] - In UserController.getUserByUsername()");
@@ -62,6 +63,7 @@ public class UserController {
 		return user;
 	}
 	
+	// TESTED WITH POSTMAN SUCCESSFULLY ON 8/01/2018 AT 10:13 A.M.
 	@GetMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public User getUserById(@PathVariable int id){
 		System.out.println("[DEBUG] - In UserController.getUserById()");
@@ -74,7 +76,7 @@ public class UserController {
 		return user;
 	}
 	
-	
+	// TESTED WITH POSTMAN SUCCESSFULLY ON 8/01/2018 AT 9:50 A.M.
 	@PostMapping(value="/emails", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public User getUserByEmail(@RequestBody User u){
 		System.out.println("[DEBUG] - In UserController.getUserByEmail()");
@@ -89,6 +91,7 @@ public class UserController {
 		return new ResponseEntity<User>(user, HttpStatus.CREATED);
 	}
 	
+	// TESTED WITH POSTMAN SUCCESSFULLY ON 8/01/2018 AT 10:38 A.M.
 	@PutMapping(value="/update", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> updateUser(@RequestBody User u){
 		System.out.println("[DEBUG] - In UserController.updateUser()");

@@ -61,8 +61,8 @@ public class ExerciseController {
 		return exerciseService.getExercisesByWorkout(wk);
 	}
 
-	@GetMapping(value="/users", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<Exercise> getExerciseByUserId(@RequestBody int id) {
+	@GetMapping(value="/users/{id}", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Exercise> getExerciseByUserId(@PathVariable int id) {
 		System.out.println("[DEBUG] - In ExerciseController.getExerciseByUserId");
 		return exerciseService.getExercisesByUserId(id);
 	}
@@ -77,7 +77,7 @@ public class ExerciseController {
 	
 	@PutMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Exercise> updateExercise(Exercise ex) {
-		System.out.println("[DEBUG] - In ExerciseController.getExerciseByName");
+		System.out.println("[DEBUG] - In ExerciseController.updateExercie");
 		Exercise exercise = exerciseService.updateExercise(ex);
 		
 		if(exercise == null) {

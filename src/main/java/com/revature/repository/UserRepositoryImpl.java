@@ -84,16 +84,23 @@ public class UserRepositoryImpl implements UserRepository{
 	}
 
 	@Override
-	public User updateUser(User newUser) {
+	public User updateUser(User currentUser) {
 		System.out.println("[DEBUG] - In UserRepository.updateUser()");
 		Session s = sessionFactory.getCurrentSession();
-		User user = s.get(User.class, newUser.getUser_id());
+		User user = s.get(User.class, currentUser.getUser_id());
 		
 		if(user == null) {
 			return user;
 		}		
 		
-		user = newUser;
+		user.setUser_id(currentUser.getUser_id());
+		user.setUsername(currentUser.getUsername());
+		user.setPassword(currentUser.getPassword());
+		user.setFirstName(currentUser.getFirstName());
+		user.setLastName(currentUser.getLastName());
+		user.setEmail(currentUser.getEmail());
+		user.setPhone(currentUser.getPhone());
+		
 		return user;
 	}
 

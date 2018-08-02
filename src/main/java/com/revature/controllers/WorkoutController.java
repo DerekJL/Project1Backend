@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.beans.Exercise;
 import com.revature.beans.Workout;
 import com.revature.exceptions.WorkoutNotFoundException;
 import com.revature.services.WorkoutService;
@@ -53,6 +54,12 @@ public class WorkoutController {
 //		return workoutService.getWorkoutByName(wk);
 //	}
 	
+	@GetMapping(value="/users/{id}", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Workout> getWorkoutsByUserId(@PathVariable int id) {
+		System.out.println("[DEBUG] - In ExerciseController.getExerciseByUserId");
+		return workoutService.getWorkoutsByUserId(id);
+	}
+	
 	@GetMapping(value="/{id}", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public Workout getWorkoutById(@PathVariable int id) {
 		System.out.println("[DEBUG] - In WorkoutController.getWorkoutbyId()");
@@ -80,6 +87,7 @@ public class WorkoutController {
 	@PostMapping(value="/create", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Workout> createWorkout(@RequestBody Workout wk) {
 		System.out.println("[DEBUG]- In WorkoutService.createWorkout()");
+		System.out.println(wk.getExercises());
 		Workout workout = workoutService.createWorkout(wk);
 		return new ResponseEntity<Workout>(workout, HttpStatus.CREATED);
 	}
