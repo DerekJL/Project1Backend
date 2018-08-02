@@ -90,7 +90,7 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 	public List<Workout> getWorkoutsByUserId(int id) { 
 		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getWorkoutsByUserId");
 		Session s = sessionFactory.getCurrentSession();
-		Query query =  (Query) s.createQuery("from Workout w where w.user_id = ? ").getResultList();
+		Query query =  (Query) s.createQuery("from Workout w where w.User_id = ? ");
 		query.setParameter(0, id);
 		List<Workout> workouts = (List<Workout>) query.getResultList();
 		return workouts;		
