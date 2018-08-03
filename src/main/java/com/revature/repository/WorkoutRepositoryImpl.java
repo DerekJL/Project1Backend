@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.revature.beans.Exercise;
 import com.revature.beans.Workout;
+import com.revature.beans.WorkoutExercise;
 
 @Repository
 public class WorkoutRepositoryImpl implements WorkoutRepository{
@@ -106,5 +107,13 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 		
 		return temp;
 	}
+	
+	 @Override
+	    public WorkoutExercise createWorkoutExercise(WorkoutExercise wk_ex) {
+	        System.out.println("[DEBUG] - In WorkoutRepositoryImpl.createWorkoutExercise");
+	        Session s = sessionFactory.getCurrentSession();
+	        s.save(wk_ex);
+	        return wk_ex;
+	    } 
 
 }

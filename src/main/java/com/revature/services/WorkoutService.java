@@ -3,10 +3,14 @@ package com.revature.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.revature.beans.Workout;
+import com.revature.beans.WorkoutExercise;
 import com.revature.repository.WorkoutRepository;
 
 @Service 
@@ -60,5 +64,11 @@ public class WorkoutService {
 		System.out.println("[DEBUG]- In WorkoutService.getWorkoutsByUserId()");
 		return workoutRepo.getWorkoutsByUserId(id);
 	}
+	
+	public WorkoutExercise createWorkoutExercise(WorkoutExercise wk_ex) {
+        System.out.println("[DEBUG]- In WorkoutService.createWorkoutExercise()");
+        //System.out.println(wk.getExercises());
+        return workoutRepo.createWorkoutExercise(wk_ex);
+    } 
 		
 }

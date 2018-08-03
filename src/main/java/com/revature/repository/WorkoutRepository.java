@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.revature.beans.Workout;
+import com.revature.beans.WorkoutExercise;
 
 @Repository
 public interface WorkoutRepository {
@@ -18,4 +19,5 @@ public interface WorkoutRepository {
 	public Workout createWorkout(Workout new_wk); 
 	public Workout updateWorkout(Workout wk);
 	public Workout updateQueuedFlag(Workout wk);
+	public WorkoutExercise createWorkoutExercise(WorkoutExercise wk_ex);
 }
