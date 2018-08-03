@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -103,5 +104,28 @@ public class UserRepositoryImpl implements UserRepository{
 		
 		return user;
 	}
+	
+	@Override
+	 public boolean loginUser(User u) {
+	        System.out.println("[DEBUG] - UserRepository.getUserByEmail()");
+	        Session s = sessionFactory.getCurrentSession();
+	        String hql = "from User u WHERE u.username = ?";
+	        Query query = s.createQuery(hql);
+	        query.setParameter(0, u.getUsername());
+
+	        User user = new User();
+	        
+	        try {
+	            user = (User) query.getSingleResult();
+	            if(BCrypt.checkpw(u.getPassword(), user.getPassword())) {
+	                return true;
+	            }
+	            else {
+	                return false;
+	            }
+	        } catch (Exception e) {
+	            return false;
+	        }        
+	    }
 
 }

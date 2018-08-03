@@ -13,5 +13,5 @@ public interface UserRepository {
 	public User getUserByEmail(User u);
 	public User addUser(User newUser);
 	public User updateUser(User newUser);
-
+	public boolean loginUser(User u);
 }
