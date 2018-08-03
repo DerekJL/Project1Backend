@@ -87,7 +87,7 @@ public class WorkoutController {
 	@PostMapping(value="/create", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Workout> createWorkout(@RequestBody Workout wk) {
 		System.out.println("[DEBUG]- In WorkoutService.createWorkout()");
-		System.out.println(wk.getExercises());
+		System.out.println(wk);
 		Workout workout = workoutService.createWorkout(wk);
 		return new ResponseEntity<Workout>(workout, HttpStatus.CREATED);
 	}

@@ -81,12 +81,7 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.createWorkout");
 		Session s = sessionFactory.getCurrentSession();
 		System.out.println(new_wk);
-		for(Exercise exercise : new_wk.getExercises()) {
-//			ExerciseWorkout exwork = new ExerciseWorkout();
-//			exwork.setExercise_id(exercise.getExercise_id());
-//			exwork.setWorkout_id(new_wk.getWorkout_id());
-			new_wk.addExercises(exercise);
-		}
+		
 		s.save(new_wk);
 		return new_wk;
 	}
