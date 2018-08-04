@@ -36,9 +36,9 @@ public class ExerciseService {
 		return exerciseRepo.getExercisesByName(ex);
 	}
 	
-	public List<Exercise> getExercisesByWorkout(Workout wk) {
+	public List<Exercise> getExercisesByWorkout(int id) {
 		System.out.println("[DEBUG] - In ExerciseService.getExerciseByWorkout");
-		return exerciseRepo.getExercisesByWorkout(wk);
+		return exerciseRepo.getExercisesByWorkout(id);
 	}
 	
 	public List<Exercise> getExercisesByUserId(int id) {

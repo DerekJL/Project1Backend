@@ -50,11 +50,11 @@ public class ExerciseRepositoryImpl implements ExerciseRepository{
 	}
 
 	@Override
-	public List<Exercise> getExercisesByWorkout(Workout wk) {
+	public List<Exercise> getExercisesByWorkout(int id) {
 		System.out.println("[DEBUG] - In ExerciseRepositoryImpl.getExercisesByWorkout");
 		Session s = sessionFactory.getCurrentSession();
-		String hql = "from Exercise e WHERE e.workout_id = ?";
-		Query query = s.createQuery(hql).setParameter(0, wk.getWorkout_id());
+		String hql = "from WorkoutExercise e WHERE e.workout_id = ?";
+		Query query = s.createQuery(hql).setParameter(0, id);
 		List<Exercise> exercises = query.getResultList();
 		return exercises;
 	}

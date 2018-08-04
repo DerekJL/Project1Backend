@@ -55,28 +55,6 @@ public class Exercise {
 	@Column(name="exercise_rest")
 	private String exercise_rest;
 	
-	
-//	@OneToOne(fetch=FetchType.LAZY, cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-//			CascadeType.DETACH, CascadeType.REFRESH})
-//	@JoinColumn(name="user_id")
-//	private User user;
-	
-	
-	@JsonIgnore
-	@ManyToMany(fetch=FetchType.EAGER, cascade= {
-			CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.DETACH, CascadeType.REFRESH
-	})	
-	@JoinTable(
-				name="ExerciseWorkout",
-				joinColumns=@JoinColumn(name="exercise_id"),
-				inverseJoinColumns=@JoinColumn(name="workout_id")		
-			)
-	
-	List<Workout> workouts;
-	
-	
-	
 	public Exercise() {}
 
 	public Exercise(int exercise_id, int type_id, int user_id, String exercise_name, String exercise_description,
@@ -102,24 +80,6 @@ public class Exercise {
 		this.exercise_sets = exercise_sets;
 		this.exercise_reps = exercise_reps;
 		this.exercise_duration = exercise_duration;
-	}
-	
-	
-
-	public Exercise(int exercise_id, int type_id, int user_id, String exercise_name, String exercise_description,
-			String exercise_sets, String exercise_reps, String exercise_duration, String exercise_rest,
-			List<Workout> workouts) {
-		super();
-		this.exercise_id = exercise_id;
-		this.type_id = type_id;
-		this.user_id = user_id;
-		this.exercise_name = exercise_name;
-		this.exercise_description = exercise_description;
-		this.exercise_sets = exercise_sets;
-		this.exercise_reps = exercise_reps;
-		this.exercise_duration = exercise_duration;
-		this.exercise_rest = exercise_rest;
-		this.workouts = workouts;
 	}
 
 	public int getExercise_id() {
@@ -185,8 +145,7 @@ public class Exercise {
 	public void setExercise_duration(String exercise_duration) {
 		this.exercise_duration = exercise_duration;
 	}
-	
-	
+
 	public String getExercise_rest() {
 		return exercise_rest;
 	}
@@ -194,15 +153,6 @@ public class Exercise {
 	public void setExercise_rest(String exercise_rest) {
 		this.exercise_rest = exercise_rest;
 	}
-
-	public List<Workout> getWorkouts() {
-		return workouts;
-	}
-
-	public void setWorkouts(List<Workout> workouts) {
-		this.workouts = workouts;
-	}
-	
 
 	@Override
 	public int hashCode() {
@@ -213,6 +163,7 @@ public class Exercise {
 		result = prime * result + exercise_id;
 		result = prime * result + ((exercise_name == null) ? 0 : exercise_name.hashCode());
 		result = prime * result + ((exercise_reps == null) ? 0 : exercise_reps.hashCode());
+		result = prime * result + ((exercise_rest == null) ? 0 : exercise_rest.hashCode());
 		result = prime * result + ((exercise_sets == null) ? 0 : exercise_sets.hashCode());
 		result = prime * result + type_id;
 		result = prime * result + user_id;
@@ -250,6 +201,11 @@ public class Exercise {
 				return false;
 		} else if (!exercise_reps.equals(other.exercise_reps))
 			return false;
+		if (exercise_rest == null) {
+			if (other.exercise_rest != null)
+				return false;
+		} else if (!exercise_rest.equals(other.exercise_rest))
+			return false;
 		if (exercise_sets == null) {
 			if (other.exercise_sets != null)
 				return false;
@@ -267,12 +223,10 @@ public class Exercise {
 		return "Exercise [exercise_id=" + exercise_id + ", type_id=" + type_id + ", user_id=" + user_id
 				+ ", exercise_name=" + exercise_name + ", exercise_description=" + exercise_description
 				+ ", exercise_sets=" + exercise_sets + ", exercise_reps=" + exercise_reps + ", exercise_duration="
-				+ exercise_duration + ", exercise_rest=" + exercise_rest + ", workouts=" + workouts + "]";
+				+ exercise_duration + ", exercise_rest=" + exercise_rest + "]";
 	}
 	
 	
-	
-	
-	
+
 	
 }

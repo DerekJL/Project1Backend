@@ -52,6 +52,9 @@ public class UserService {
 		return userRepo.updateUser(u);
 	}
 
-	
+	public boolean loginUser(User u) {
+        System.out.println("[DEBUG] - In UserService.getUserByUsername()");
+        return userRepo.loginUser(u);
+    } 
 
 }

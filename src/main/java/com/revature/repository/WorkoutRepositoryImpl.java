@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.revature.beans.Exercise;
 import com.revature.beans.Workout;
+import com.revature.beans.WorkoutExercise;
 
 @Repository
 public class WorkoutRepositoryImpl implements WorkoutRepository{
@@ -81,12 +82,7 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.createWorkout");
 		Session s = sessionFactory.getCurrentSession();
 		System.out.println(new_wk);
-		for(Exercise exercise : new_wk.getExercises()) {
-//			ExerciseWorkout exwork = new ExerciseWorkout();
-//			exwork.setExercise_id(exercise.getExercise_id());
-//			exwork.setWorkout_id(new_wk.getWorkout_id());
-			new_wk.addExercises(exercise);
-		}
+		
 		s.save(new_wk);
 		return new_wk;
 	}
@@ -111,5 +107,13 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 		
 		return temp;
 	}
+	
+	 @Override
+	    public WorkoutExercise createWorkoutExercise(WorkoutExercise wk_ex) {
+	        System.out.println("[DEBUG] - In WorkoutRepositoryImpl.createWorkoutExercise");
+	        Session s = sessionFactory.getCurrentSession();
+	        s.save(wk_ex);
+	        return wk_ex;
+	    } 
 
 }

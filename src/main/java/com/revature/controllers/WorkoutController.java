@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Exercise;
 import com.revature.beans.Workout;
+import com.revature.beans.WorkoutExercise;
 import com.revature.exceptions.WorkoutNotFoundException;
 import com.revature.services.WorkoutService;
 
@@ -87,11 +88,18 @@ public class WorkoutController {
 	@PostMapping(value="/create", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Workout> createWorkout(@RequestBody Workout wk) {
 		System.out.println("[DEBUG]- In WorkoutService.createWorkout()");
-		System.out.println(wk.getExercises());
+		System.out.println(wk);
 		Workout workout = workoutService.createWorkout(wk);
 		return new ResponseEntity<Workout>(workout, HttpStatus.CREATED);
 	}
 	 
-	
+	@PostMapping(value="/createjunction", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WorkoutExercise> createWorkoutExercise(@RequestBody WorkoutExercise wk) {
+        System.out.println("[DEBUG]- In WorkoutController.createWorkoutExercise()");
+        System.out.println(wk);
+        System.out.println("this exercises workout id while in the controller: "+ wk.getWorkout_id());
+        WorkoutExercise workoutExercise = workoutService.createWorkoutExercise(wk);
+        return new ResponseEntity<WorkoutExercise>(workoutExercise, HttpStatus.CREATED);
+    } 
 	
 }

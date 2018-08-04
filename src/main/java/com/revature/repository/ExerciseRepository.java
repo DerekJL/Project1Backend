@@ -11,7 +11,7 @@ public interface ExerciseRepository {
 	public List<Exercise> getAllExercises();
 	public Exercise getExerciseById(int id);
 	public List<Exercise> getExercisesByName(Exercise ex);
-	public List<Exercise> getExercisesByWorkout(Workout wk);
+	public List<Exercise> getExercisesByWorkout(int id);
 	public Exercise createExercise(Exercise ex);
 	public Exercise updateExercise(Exercise ex);
 	public List<Exercise> getExercisesByUserId(int id);
