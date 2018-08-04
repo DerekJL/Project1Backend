@@ -52,15 +52,16 @@ public class UserController {
 		return user;
 	}
 	
+	
 	@PostMapping(value="/login", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public User loginUser(@RequestBody User u){
+	public boolean loginUser(@RequestBody User u){
 		System.out.println("[DEBUG] - In UserController.loginUser()");
-		User user = userService.getUserByUsername(u);
+		boolean loggedIn = userService.loginUser(u);
 		
-		if(user == null) {
+		if(loggedIn == false) {
 			throw new UserNotFoundException("User with username " + u.getUsername() + " not found.");
 		}
-		return user;
+		return true;
 	}
 	
 	// TESTED WITH POSTMAN SUCCESSFULLY ON 8/01/2018 AT 10:13 A.M.

@@ -62,17 +62,18 @@ public class Exercise {
 //	private User user;
 	
 	
-	@JsonIgnore
-	@ManyToMany(fetch=FetchType.EAGER, cascade= {
-			CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.DETACH, CascadeType.REFRESH
-	})	
-	@JoinTable(
-				name="ExerciseWorkout",
-				joinColumns=@JoinColumn(name="exercise_id"),
-				inverseJoinColumns=@JoinColumn(name="workout_id")		
-			)
+//	@JsonIgnore
+//	@ManyToMany(fetch=FetchType.LAZY, cascade= {
+//			CascadeType.PERSIST, CascadeType.MERGE,
+//			CascadeType.DETACH, CascadeType.REFRESH
+//	})	
+//	@JoinTable(
+//				name="ExerciseWorkout",
+//				joinColumns=@JoinColumn(name="exercise_id"),
+//				inverseJoinColumns=@JoinColumn(name="workout_id")		
+//			)
 	
+	@ManyToMany(mappedBy="exercises")
 	List<Workout> workouts;
 	
 	

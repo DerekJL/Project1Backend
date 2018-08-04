@@ -50,7 +50,7 @@ public class Workout {
 	private String queued_workout;
 	
 	@JsonIgnore
-	@ManyToMany(fetch=FetchType.EAGER, cascade= {
+	@ManyToMany(fetch=FetchType.LAZY, cascade= {
 			CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.DETACH, CascadeType.REFRESH
 	})

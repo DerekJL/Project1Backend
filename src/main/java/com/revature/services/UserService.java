@@ -42,6 +42,11 @@ public class UserService {
 		return userRepo.getUserByUsername(u);
 	}
 	
+	public boolean loginUser(User u) {
+		System.out.println("[DEBUG] - In UserService.getUserByUsername()");
+		return userRepo.loginUser(u);
+	}
+	
 	public User addUser(User u) {
 		System.out.println("[DEBUG] - In UserService.addUser()");
 		return userRepo.addUser(u);

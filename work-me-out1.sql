@@ -54,7 +54,7 @@ CREATE TABLE Workout(
     user_id				int,
     type_id				int,
     workout_name		varchar(25),
-    workout_description varchar(25),
+    workout_description varchar(250),
     queued_workout		varchar(1),
     
     CONSTRAINT PK_Workout	PRIMARY KEY (workout_id),
