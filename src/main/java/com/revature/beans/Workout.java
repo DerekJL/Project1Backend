@@ -49,20 +49,6 @@ public class Workout {
 	@Column(name="queued_workout")
 	private String queued_workout;
 	
-	@JsonIgnore
-	@ManyToMany(fetch=FetchType.EAGER, cascade= {
-			CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.DETACH, CascadeType.REFRESH
-	})
-	@JoinTable(
-			name="ExerciseWorkout",
-			joinColumns=@JoinColumn(name="workout_id"),
-			inverseJoinColumns=@JoinColumn(name="exercise_id")
-			)
-	
-	private List<Exercise> exercises;
-	
-	
 	public Workout() {}
 	
 	
@@ -86,7 +72,6 @@ public class Workout {
 		this.workout_visibility = workout_visibility;
 		this.queued_workout = queued_workout;
 	}
-
 
 	public int getWorkout_id() {
 		return workout_id;
@@ -133,25 +118,6 @@ public class Workout {
 	public void setQueued_workout(String string) {
 		this.queued_workout = string;
 	}
-	
-	
-	public List<Exercise> getExercises() {
-		return exercises;
-	}
-
-
-	public void setExercises(List<Exercise> exercises) {
-		this.exercises = exercises;
-	}
-	
-	// Add a convenience method
-		public void addExercises(Exercise exercise) {
-			if (exercise == null) {
-				exercises = new ArrayList<Exercise>();
-			}
-			
-			exercises.add(exercise);
-		}
 
 
 	@Override
@@ -159,12 +125,16 @@ public class Workout {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + User_id;
+		result = prime * result + ((queued_workout == null) ? 0 : queued_workout.hashCode());
 		result = prime * result + type_id;
 		result = prime * result + ((workout_description == null) ? 0 : workout_description.hashCode());
 		result = prime * result + workout_id;
 		result = prime * result + ((workout_name == null) ? 0 : workout_name.hashCode());
+		result = prime * result + workout_visibility;
 		return result;
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -176,7 +146,10 @@ public class Workout {
 		Workout other = (Workout) obj;
 		if (User_id != other.User_id)
 			return false;
-		if (queued_workout != other.queued_workout)
+		if (queued_workout == null) {
+			if (other.queued_workout != null)
+				return false;
+		} else if (!queued_workout.equals(other.queued_workout))
 			return false;
 		if (type_id != other.type_id)
 			return false;
@@ -192,16 +165,20 @@ public class Workout {
 				return false;
 		} else if (!workout_name.equals(other.workout_name))
 			return false;
+		if (workout_visibility != other.workout_visibility)
+			return false;
 		return true;
 	}
+
+
 	@Override
 	public String toString() {
 		return "Workout [workout_id=" + workout_id + ", User_id=" + User_id + ", type_id=" + type_id + ", workout_name="
-				+ workout_name + ", workout_description=" + workout_description + ", queued_workout=" + queued_workout
-				+ "]";
+				+ workout_name + ", workout_description=" + workout_description + ", workout_visibility="
+				+ workout_visibility + ", queued_workout=" + queued_workout + "]";
 	}
-	
-	
+
+
 	
 	
 
