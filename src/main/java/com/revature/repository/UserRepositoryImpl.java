@@ -79,6 +79,9 @@ public class UserRepositoryImpl implements UserRepository{
 	public User addUser(User newUser) {
 		System.out.println("[DEBUG] - UserRepository.addUser()");
 		Session s = sessionFactory.getCurrentSession();
+		//System.out.println(BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt()));
+		newUser.setPassword(BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt()));
+		//System.out.println(newUser.getPassword());
 		s.save(newUser);
 		return newUser;
 		
@@ -88,6 +91,8 @@ public class UserRepositoryImpl implements UserRepository{
 	public User updateUser(User currentUser) {
 		System.out.println("[DEBUG] - In UserRepository.updateUser()");
 		Session s = sessionFactory.getCurrentSession();
+		currentUser.setPassword(BCrypt.hashpw(currentUser.getPassword(), BCrypt.gensalt()));
+
 		User user = s.get(User.class, currentUser.getUser_id());
 		
 		if(user == null) {

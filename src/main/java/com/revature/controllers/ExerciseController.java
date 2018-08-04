@@ -55,10 +55,10 @@ public class ExerciseController {
 		return exerciseService.getExercisesByName(ex);
 	}
 	
-	@PostMapping(value="/workouts", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<Exercise> getExercisesByWorkout(@RequestBody Workout wk) {
+	@GetMapping(value="/workouts/{id}", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Exercise> getExercisesByWorkout(@PathVariable int id) {
 		System.out.println("[DEBUG] - In ExerciseController.getExerciseByWorkout");
-		return exerciseService.getExercisesByWorkout(wk);
+		return exerciseService.getExercisesByWorkout(id);
 	}
 
 	@GetMapping(value="/users/{id}", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
