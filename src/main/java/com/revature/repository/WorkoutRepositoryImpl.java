@@ -1,6 +1,6 @@
 package com.revature.repository;
 
-import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -9,7 +9,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.revature.beans.Exercise;
 import com.revature.beans.Workout;
 import com.revature.beans.WorkoutExercise;
 
@@ -23,12 +22,21 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 	@Autowired
 	SessionFactory sessionFactory; 
 
-	@Override
-	public List<Workout> getAllWorkouts() {
-		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getAllWorkouts");
-		Session s = sessionFactory.getCurrentSession();
-		return s.createQuery("from Workout w WHERE w.visibility = 1", Workout.class).getResultList();
-	}
+	 @Override
+	    public List<Workout> getAllWorkouts() {
+	        System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getAllWorkouts");
+	        Session s = sessionFactory.getCurrentSession();
+	        String hql = "from Workout w WHERE w.visibility = 1";
+	        List<Workout> workouts = new ArrayList<Workout>();
+	        try {
+	        	Query query = s.createQuery(hql);
+		        workouts = query.getResultList();
+		        
+	        }catch(Exception e) {
+	        	//no workouts found
+	        }        
+	        return workouts;        
+	    } 
 
 	@Override
 	public List<Workout> getWorkoutsByVisibility(int visibilityId) {
