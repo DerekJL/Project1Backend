@@ -115,22 +115,18 @@ public class UserRepositoryImpl implements UserRepository{
 	        System.out.println("[DEBUG] - UserRepository.getUserByEmail()");
 	        Session s = sessionFactory.getCurrentSession();
 	        String hql = "from User u WHERE u.username = ?";
-	        Query query = s.createQuery(hql);
-	        query.setParameter(0, u.getUsername());
-
-	        User user = new User();
 	        
 	        try {
+	        	Query query = s.createQuery(hql);
+	        	query.setParameter(0, u.getUsername());
+
+	        	User user = new User();
 	            user = (User) query.getSingleResult();
-	            if(BCrypt.checkpw(u.getPassword(), user.getPassword())) {
-	                return true;
-	            }
-	            else {
-	                return false;
-	            }
+	            return BCrypt.checkpw(u.getPassword(), user.getPassword()) ;
 	        } catch (Exception e) {
 	            return false;
-	        }        
+	        }     
+	        
 	    }
 
 }
