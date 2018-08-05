@@ -46,9 +46,9 @@ public class UserController {
 		System.out.println("[DEBUG] - In UserController.getUserByUsername()");
 		User user = userService.getUserByUsername(u);
 		
-		if(user == null) {
-			throw new UserNotFoundException("User with username " + u.getUsername() + " not found.");
-		}
+//		if(user == null) {
+//			throw new UserNotFoundException("User with username " + u.getUsername() + " not found.");
+//		}
 		return user;
 	}
 	
@@ -58,7 +58,9 @@ public class UserController {
 		boolean loggedIn = userService.loginUser(u);
 		
 		if(loggedIn == false) {
-			throw new UserNotFoundException("User with username " + u.getUsername() + " not found.");
+				
+			//throw new UserNotFoundException("User with username " + u.getUsername() + " not found.");
+			return false;
 		}
 		return true;
 	}
@@ -69,9 +71,9 @@ public class UserController {
 		System.out.println("[DEBUG] - In UserController.getUserById()");
 		User user = userService.getUserById(id);
 		
-		if(user == null) {
-			throw new UserNotFoundException("User with id " + id + " not found.");
-		}
+//		if(user == null) {
+//			throw new UserNotFoundException("User with id " + id + " not found.");
+//		}
 		
 		return user;
 	}
@@ -97,9 +99,9 @@ public class UserController {
 		System.out.println("[DEBUG] - In UserController.updateUser()");
 		User user = userService.updateUser(u);
 		
-		if(user == null) {
-			throw new UserNotFoundException("User with id " + u.getUser_id() + " not found.");
-		}
+//		if(user == null) {
+//			throw new UserNotFoundException("User with id " + u.getUser_id() + " not found.");
+//		}
 		
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
