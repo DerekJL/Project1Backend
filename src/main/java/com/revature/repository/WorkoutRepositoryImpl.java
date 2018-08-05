@@ -27,7 +27,7 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 	public List<Workout> getAllWorkouts() {
 		System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getAllWorkouts");
 		Session s = sessionFactory.getCurrentSession();
-		return s.createQuery("from Workout", Workout.class).getResultList();
+		return s.createQuery("from Workout w WHERE w.visibility = 1", Workout.class).getResultList();
 	}
 
 	@Override
