@@ -61,13 +61,11 @@ public class UserRepositoryImpl implements UserRepository{
 			if(BCrypt.checkpw(u.getPassword(), user.getPassword())) {
 				return true;
 			}
-			else {
-				return false;
-			}
 		} catch (Exception e) {
 			return false;
 		}
 		
+		return false;
 		
 	}
 
