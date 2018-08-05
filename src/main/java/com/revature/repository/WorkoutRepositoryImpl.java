@@ -65,7 +65,13 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 			return temp;
 		}
 		
-		temp = wk;
+		temp.setWorkout_id(wk.getWorkout_id());
+        temp.setUser_id(wk.getUser_id());
+        temp.setType_id(wk.getType_id());
+        temp.setWorkout_name(wk.getWorkout_name());
+        temp.setWorkout_description(wk.getWorkout_description());
+        temp.setWorkout_visibility(wk.getWorkout_visibility());
+        temp.setQueued_workout(wk.getQueued_workout());
 
 		return temp;
 	}
