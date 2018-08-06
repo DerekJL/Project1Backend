@@ -95,9 +95,11 @@ public class UserRepositoryImpl implements UserRepository{
 
 		User user = s.get(User.class, currentUser.getUser_id());
 		
-		if(user == null) {
-			return user;
-		}		
+		System.out.println(user.toString());
+		
+//		if(user == null) {
+//			return user;
+//		}		
 		
 		user.setUser_id(currentUser.getUser_id());
 		user.setUsername(currentUser.getUsername());
