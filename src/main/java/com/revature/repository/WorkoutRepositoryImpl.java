@@ -26,7 +26,7 @@ public class WorkoutRepositoryImpl implements WorkoutRepository{
 	    public List<Workout> getAllWorkouts() {
 	        System.out.println("[DEBUG] - In WorkoutRepositoryImpl.getAllWorkouts");
 	        Session s = sessionFactory.getCurrentSession();
-	        String hql = "from Workout w WHERE w.visibility = 1";
+	        String hql = "from Workout w WHERE w.workout_visibility = 1";
 	        List<Workout> workouts = new ArrayList<Workout>();
 	        try {
 	        	Query query = s.createQuery(hql);
