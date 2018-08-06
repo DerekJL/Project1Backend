@@ -21,6 +21,7 @@ import com.revature.exceptions.UserNotFoundException;
 import com.revature.services.ExerciseService;
 import com.revature.services.UserService;
 import com.revature.services.WorkoutService;
+import com.revature.util.SendEmailHelper;
 
 @RestController
 @RequestMapping(value="/users")
@@ -106,4 +107,14 @@ public class UserController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
+		@PostMapping(value="/reset", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+		public boolean resetPassword(@RequestBody User u){
+			System.out.println("[DEBUG] - In UserController.resetPassword()");
+			try {
+			SendEmailHelper.sendEmail(u.getEmail());
+			}catch(Exception e) {
+				return false;
+			}
+			return true;
+		}
 }
