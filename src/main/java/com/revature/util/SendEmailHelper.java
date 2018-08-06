@@ -18,9 +18,9 @@ public class SendEmailHelper {
    public static void sendEmail(String to) {    
      
 	   		String from = "djloisel19@gmail.com";
-	   		String fromPass = "ILoveMyFamily1919";
+	   		String something = "K3rrk3rr19";
 	   		final String username = from;
-	   		final String password = fromPass;
+	   		final String password = something;
 
 	   		Properties props = new Properties();
 	   		props.put("mail.smtp.auth", "true");
@@ -34,24 +34,16 @@ public class SendEmailHelper {
 	   				return new PasswordAuthentication(username, password);
 	   			}
 	   		  });
-
 	   		try {
-
 	   			Message message = new MimeMessage(session);
 	   			message.setFrom(new InternetAddress(from));
 	   			message.setRecipients(Message.RecipientType.TO,
-	   				InternetAddress.parse(to));
+	   			InternetAddress.parse(to));
 	   			message.setSubject("WorkMeOut Password Reset");
-	   			message.setText("Follow the link below to reset your password\n http://localhost:4200/recovery");
-
+	   			message.setText("Follow the link below to reset your password\n http://aws-s3-project2.s3-website-us-east-1.amazonaws.com/recovery");
 	   			Transport.send(message);
-
-	   			System.out.println("Email sent");
-
 	   		} catch (MessagingException e) {
 	   			throw new RuntimeException(e);
-	   		}
-	   	
-	   
+	   		}   
    }
 }
